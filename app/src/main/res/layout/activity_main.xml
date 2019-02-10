@@ -257,7 +257,8 @@
         android:layout_marginStart="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/relativeLayout"
+        app:layout_constraintHorizontal_bias="0.708"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -265,6 +266,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:rotation="180"
             android:text="B6" />
 
         <TextView
@@ -272,6 +274,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:rotation="180"
             android:text="B5" />
 
         <TextView
@@ -279,6 +282,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:rotation="180"
             android:text="B4" />
 
         <TextView
@@ -286,6 +290,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:rotation="180"
             android:text="B3" />
 
         <TextView
@@ -293,6 +298,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:rotation="180"
             android:text="B2" />
 
         <TextView
@@ -300,12 +306,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:rotation="180"
             android:text="B1" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="475dp"
-        android:layout_height="16dp"
+        android:layout_height="25dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -315,8 +322,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintHorizontal_bias="0.312"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.473">
 
         <TextView
             android:id="@+id/txt_a1"

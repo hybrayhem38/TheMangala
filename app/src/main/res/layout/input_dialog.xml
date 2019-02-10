@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:padding="10dp"
-        android:text="Oyuncu_1" />
+        android:hint="Oyuncu_1" />
 
     <EditText
         android:id="@+id/txtOyuncu2"
@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:padding="10dp"
-        android:text="Oyuncu_2" />
+        android:hint="Oyuncu_2" />
 
 </LinearLayout>

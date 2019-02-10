@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 oyuncu_b[0] = txtOyuncu2.getText().toString();
                 txtTurn.setText("Hamle Sırası: " + oyuncu_a[0] + " başlıyor...");
 //                        Toast.makeText(getApplicationContext(),"Oyuncu1: "+oyuncu_a+" / Oyuncu2: "+oyuncu_b, Toast.LENGTH_LONG).show();
+                Log.i("input_control", "Oyuncu1: "+oyuncu_a+" / Oyuncu2: "+oyuncu_b);
             }
         });
 // buraya taş saklama diyaloğu ekle oyuncu_a bilemezse oyuncu a ve byi değiştir.
@@ -174,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         Kuyular[5] = 4;
                         Kuyular[6] = 0;
 
-                        Kuyular[7] = 4;  // BURALARI SİLMEYİ UNUTMA
+                        Kuyular[7] = 4;
                         Kuyular[8] = 4;
                         Kuyular[9] = 4;
                         Kuyular[10] = 4;
@@ -359,13 +361,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                Log.d("method_hamle","Hamle bloğu başlangıcı" );
 //                try{
                 int hamle = Integer.parseInt(textView.getText().toString());
 //                }
 //                catch (java.lang.NumberFormatException)
 //                }
-
-
                 int hazinem = -1;
                 int A_max = -1;
                 int A_min = -1;
@@ -375,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int eldeki_tas_sayisi = Kuyular[hamle];
                 if (oyuncu_a_nin_sirasi[0]) {
+                    Log.d("method_hamle","Sıra Oyuncu A'da" );
                     hazinem = 6;
                     A_max = 5;
                     A_min = 0;
@@ -382,14 +384,17 @@ public class MainActivity extends AppCompatActivity {
                     B_min = 7;
                 }
                 if (oyuncu_b_nin_sirasi[0]) {
+                    Log.d("method_hamle","Sıra Oyuncu B'de" );
                     hazinem = 13;
                     A_max = 12;
                     A_min = 7;
                     B_max = 5;
                     B_min = 0;
                 }
-                if (hamle != hazinem && Kuyular[hamle] != 0) {
+                if (hamle != hazinem && Kuyular[hamle] != 0) { //TODO hamle != hazinem gerekli değil
+
                     if (Kuyular[hamle] == 1) {
+                        Log.d("method_hamle",",kuyuda bir taş var" );
                         Kuyular[hamle] = 0;
                         hamle++;
                         Kuyular[hamle] += 1;
@@ -398,6 +403,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                        Toast.makeText(getApplicationContext(),"Kuyudaki tek taş bir sonraki kuyuya atıldı.", Toast.LENGTH_LONG).show();
                     } else {
+                        Log.d("method_hamle","normal hamle başlangıcı" );
                         Kuyular[hamle] = 0;
                         while (eldeki_tas_sayisi > 0) {
                             if (hamle > 13) {
@@ -419,11 +425,37 @@ public class MainActivity extends AppCompatActivity {
                     oyuncu_a_nin_sirasi[0] = !oyuncu_a_nin_sirasi[0];
                     oyuncu_b_nin_sirasi[0] = !oyuncu_b_nin_sirasi[0];
 
+                    if (B_max >= kuyu_of_son_tas && kuyu_of_son_tas >= B_min && (Kuyular[kuyu_of_son_tas]) % 2 == 0) {
+//                    System.out.println("***Düşman kuyusu çiftlendi.");
+                        Log.d("method_hamle","Düşman kuyusu çiftlendi.");
+                        Toast.makeText(getApplicationContext(),"Düşman kuyusu çiftlendi.", Toast.LENGTH_LONG).show();
+                        Kuyular[hazinem] = Kuyular[hazinem] + Kuyular[kuyu_of_son_tas];
+                        Kuyular[kuyu_of_son_tas] = 0;
+                    }
+
+                    if (Kuyular[(12 - kuyu_of_son_tas)] != 0 && Kuyular[kuyu_of_son_tas] == 1 && A_max >= kuyu_of_son_tas && kuyu_of_son_tas >= A_min) {  // Kuyu sıfırdaki bir taşı oynayınca:"Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: -1"
+//                    System.out.println("boş dost kuyu dolduruldu");
+                        Log.d("method_hamle","Boş kuyu dolduruldu.");
+                        Toast.makeText(getApplicationContext(),"Boş kuyu dolduruldu.", Toast.LENGTH_LONG).show();
+                        Kuyular[hazinem] += Kuyular[kuyu_of_son_tas];
+                        Kuyular[kuyu_of_son_tas] = 0;
+                        Kuyular[hazinem] += Kuyular[(12 - kuyu_of_son_tas)];
+                        Kuyular[(12 - kuyu_of_son_tas)] = 0;   //12 sayısı yerine bişey koy onu da oyuncu sırasına göre değiştir
+                    }
+                    if (kuyu_of_son_tas == hazinem) {
+//                    System.out.println("tebrikler bir hamle hakkı daha kazandınız, sıra hala sizde");
+                        Log.d("method_hamle","Bir hamle hakkı daha kazandınız.");
+                        Toast.makeText(getApplicationContext(),"Bir hamle hakkı daha kazandınız.", Toast.LENGTH_LONG).show();
+                        oyuncu_a_nin_sirasi[0] = !oyuncu_a_nin_sirasi[0];
+                        oyuncu_b_nin_sirasi[0] = !oyuncu_b_nin_sirasi[0];
+                    }
+
                     if (((Kuyular[0] + Kuyular[1] + Kuyular[2] + Kuyular[3] + Kuyular[4] + Kuyular[5]) == 0) || ((Kuyular[7] + Kuyular[8] + Kuyular[9] + Kuyular[10] + Kuyular[11] + Kuyular[12]) == 0)){
 //                    Toast.makeText(getApplicationContext(),"Tüm kuyular 0.", Toast.LENGTH_LONG).show();
+                        Log.d("method_hamle","Oyun bitti" );
 
                         if (oyuncu_b_nin_sirasi[0]){ // so the turn already changed.
-
+                            Log.d("method_hamle","A tarafında tüm kuyular 0." );
 //                            Toast.makeText(getApplicationContext(),"A tarafında tüm kuyular 0.", Toast.LENGTH_LONG).show();
                             //TODO hazineye atma fonksiyonu ekle, zaten bir taraf sıfır olduğu için tümünü de atabilir tek tarafı da
                             Kuyular[6]+= Kuyular[7];
@@ -438,7 +470,7 @@ public class MainActivity extends AppCompatActivity {
 //                        System.out.println(oyuncu_a+" oyunu kazandı. Çıkmak için çıkışa tekrar oynamak için tekrar oynaya basın");
                         }
                         if (oyuncu_a_nin_sirasi[0]){ // so the turn already changed.
-
+                            Log.d("method_hamle","B tarafında tüm kuyular 0." );
 //                            Toast.makeText(getApplicationContext(),"B tarafında tüm kuyular 0.", Toast.LENGTH_LONG).show();
                             //TODO hazineye atma fonksiyonu ekle,
                             Kuyular[13]+= Kuyular[0];
@@ -510,30 +542,10 @@ public class MainActivity extends AppCompatActivity {
                         builder1.show();
                     }
 
-                    if (B_max >= kuyu_of_son_tas && kuyu_of_son_tas >= B_min && (Kuyular[kuyu_of_son_tas]) % 2 == 0) {
-//                    System.out.println("***Düşman kuyusu çiftlendi.");
-                        Toast.makeText(getApplicationContext(),"Düşman kuyusu çiftlendi.", Toast.LENGTH_LONG).show();
-                        Kuyular[hazinem] = Kuyular[hazinem] + Kuyular[kuyu_of_son_tas];
-                        Kuyular[kuyu_of_son_tas] = 0;
-                    }
-
-                    if (Kuyular[kuyu_of_son_tas] == 1 && A_max >= kuyu_of_son_tas && kuyu_of_son_tas >= A_min) {  // Kuyu sıfırdaki bir taşı oynayınca:"Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: -1"
-//                    System.out.println("boş dost kuyu dolduruldu");
-                        Toast.makeText(getApplicationContext(),"Boş kuyu dolduruldu.", Toast.LENGTH_LONG).show();
-                        Kuyular[hazinem] += Kuyular[kuyu_of_son_tas];
-                        Kuyular[kuyu_of_son_tas] = 0;
-                        Kuyular[hazinem] += Kuyular[(12 - kuyu_of_son_tas)];
-                        Kuyular[(12 - kuyu_of_son_tas)] = 0;   //12 sayısı yerine bişey koy onu da oyuncu sırasına göre değiştir
-                    }
-                    if (kuyu_of_son_tas == hazinem) {
-//                    System.out.println("tebrikler bir hamle hakkı daha kazandınız, sıra hala sizde");
-                        Toast.makeText(getApplicationContext(),"Bir hamle hakkı daha kazandınız.", Toast.LENGTH_LONG).show();
-                        oyuncu_a_nin_sirasi[0] = !oyuncu_a_nin_sirasi[0];
-                        oyuncu_b_nin_sirasi[0] = !oyuncu_b_nin_sirasi[0];
-                    }
                 } else {
 //                System.out.println("Geçersiz kuyu seçimi!!!");
 //                    txtTurn.setText("Geçersiz kuyu seçimi!!!");
+                    Log.d("method_hamle","Geçersiz kuyu seçimi!!!");
                     Toast.makeText(getApplicationContext(),"Geçersiz kuyu seçimi!!!", Toast.LENGTH_LONG).show();
                 }
 
@@ -559,6 +571,7 @@ public class MainActivity extends AppCompatActivity {
                     a6.setEnabled(true);
                     change_textColorB("#00FF7F", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
                     change_textColorB("#000000", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
+                    Log.d("method_hamle","Hamle sırası oyuncu A'ya geçirildi.");
                 }
                 if (oyuncu_b_nin_sirasi[0]) {
 //                System.out.println("   Oyuncu sırası: " + oyuncu_b);
@@ -578,6 +591,7 @@ public class MainActivity extends AppCompatActivity {
                     b6.setEnabled(true);
                     change_textColorB("#000000", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
                     change_textColorB("#00FF7F", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
+                    Log.d("method_hamle","Hamle sırası oyuncu B'ye geçirildi.");
                 }
 //            System.out.format("╚════════════════════════════════╝\n");
 
@@ -587,6 +601,7 @@ public class MainActivity extends AppCompatActivity {
                 set_boardText(Kuyular, txt_b1,txt_b2,txt_b3,txt_b4,txt_b5,txt_b6,txt_a1,txt_a2,txt_a3,txt_a4,txt_a5,txt_a6, h1, h2);
 
                 btnOK.setEnabled(false);
+                Log.d("method_hamle","Hamle bloğu bitişi.");
             }
         });
 //        print_board(Kuyular,b1,b2, b3, b4, b5, b6, a1, a2, a3, a4, a5, a6, h1, h2);

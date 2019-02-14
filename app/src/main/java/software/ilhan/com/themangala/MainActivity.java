@@ -433,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
                         Kuyular[kuyu_of_son_tas] = 0;
                     }
 
-                    if (Kuyular[(12 - kuyu_of_son_tas)] != 0 && Kuyular[kuyu_of_son_tas] == 1 && A_max >= kuyu_of_son_tas && kuyu_of_son_tas >= A_min) {  // Kuyu sıfırdaki bir taşı oynayınca:"Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: -1"
+                    if (kuyu_of_son_tas != hazinem && Kuyular[(12 - kuyu_of_son_tas)] != 0 && Kuyular[kuyu_of_son_tas] == 1 && A_max >= kuyu_of_son_tas && kuyu_of_son_tas >= A_min) {  // Kuyu sıfırdaki bir taşı oynayınca:"Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: -1"
 //                    System.out.println("boş dost kuyu dolduruldu");
                         Log.d("method_hamle","Boş kuyu dolduruldu.");
                         Toast.makeText(getApplicationContext(),"Boş kuyu dolduruldu.", Toast.LENGTH_LONG).show();

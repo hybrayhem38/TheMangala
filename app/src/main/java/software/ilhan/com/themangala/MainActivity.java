@@ -486,10 +486,11 @@ public class MainActivity extends AppCompatActivity {
 
                         if(Kuyular[6] > Kuyular[13]){winner = oyuncu_a[0];}
                         if (Kuyular[13] > Kuyular[6]){winner = oyuncu_b[0];}
+                        if(Kuyular[6] == Kuyular[13]){winner = "Beraberlik";}
 
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
                         builder1.setTitle("Oyun Bitti");
-                        builder1.setMessage("Tebrikler " + winner + " oyunu kazandı, " +Kuyular[13] +":"+Kuyular[6] );
+                        builder1.setMessage("Tebrikler " + winner + " kazandı, " +Kuyular[13] +":"+Kuyular[6] );
                         builder1.setCancelable(false);
                         builder1.setNegativeButton("Çıkış", new DialogInterface.OnClickListener() {
                             @Override

@@ -454,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(getApplicationContext(),"Tüm kuyular 0.", Toast.LENGTH_LONG).show();
                         Log.d("method_hamle","Oyun bitti" );
 
-                        if (oyuncu_b_nin_sirasi[0]){ // so the turn already changed.
+                        if (oyuncu_a_nin_sirasi[0]){ // so the turn already changed.
                             Log.d("method_hamle","A tarafında tüm kuyular 0." );
 //                            Toast.makeText(getApplicationContext(),"A tarafında tüm kuyular 0.", Toast.LENGTH_LONG).show();
                             //TODO hazineye atma fonksiyonu ekle, zaten bir taraf sıfır olduğu için tümünü de atabilir tek tarafı da
@@ -469,7 +469,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                        System.out.println(oyuncu_a+" oyunu kazandı. Çıkmak için çıkışa tekrar oynamak için tekrar oynaya basın");
                         }
-                        if (oyuncu_a_nin_sirasi[0]){ // so the turn already changed.
+                        if (oyuncu_b_nin_sirasi[0]){ // so the turn already changed.
                             Log.d("method_hamle","B tarafında tüm kuyular 0." );
 //                            Toast.makeText(getApplicationContext(),"B tarafında tüm kuyular 0.", Toast.LENGTH_LONG).show();
                             //TODO hazineye atma fonksiyonu ekle,

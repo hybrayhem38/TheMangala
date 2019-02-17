@@ -465,6 +465,13 @@ public class MainActivity extends AppCompatActivity {
                             Kuyular[6]+= Kuyular[11];
                             Kuyular[6]+= Kuyular[12];
 
+                            Kuyular[7] = 0;
+                            Kuyular[8] = 0;
+                            Kuyular[9] = 0;
+                            Kuyular[10] = 0;
+                            Kuyular[11] = 0;
+                            Kuyular[12] = 0;
+
 //                            winner = oyuncu_b;
 
 //                        System.out.println(oyuncu_a+" oyunu kazandı. Çıkmak için çıkışa tekrar oynamak için tekrar oynaya basın");
@@ -479,6 +486,13 @@ public class MainActivity extends AppCompatActivity {
                             Kuyular[13]+= Kuyular[3];
                             Kuyular[13]+= Kuyular[4];
                             Kuyular[13]+= Kuyular[5];
+
+                            Kuyular[0] = 0;
+                            Kuyular[1] = 0;
+                            Kuyular[2] = 0;
+                            Kuyular[3] = 0;
+                            Kuyular[4] = 0;
+                            Kuyular[5] = 0;
 
 //                            winner = oyuncu_a;
 //                        System.out.println(oyuncu_b+" oyunu kazandı. Çıkmak için çıkışa tekrar oynamak için tekrar oynaya basın");

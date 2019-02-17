@@ -199,8 +199,8 @@ public class MainActivity extends AppCompatActivity {
                         a6.setEnabled(true);
                         set_boardImage(Kuyular,b1,b2, b3, b4, b5, b6, a1, a2, a3, a4, a5, a6);
                         set_boardText(Kuyular, txt_b1,txt_b2,txt_b3,txt_b4,txt_b5,txt_b6,txt_a1,txt_a2,txt_a3,txt_a4,txt_a5,txt_a6, h1, h2);
-                        change_textColorB("#00FF7F", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
-                        change_textColorB("#000000", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
+                        change_textColor("#00FF7F", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
+                        change_textColor("#000000", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
                         Toast.makeText(getApplicationContext(),"Oyun Sıfırlandı", Toast.LENGTH_LONG).show();
 
                     }
@@ -483,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
 //                            winner = oyuncu_a;
 //                        System.out.println(oyuncu_b+" oyunu kazandı. Çıkmak için çıkışa tekrar oynamak için tekrar oynaya basın");
                         }
-
+                        Log.d("method_hamle","Tüm taşlar kazanan kuyuya atıldı, \nA:"+Kuyular[0]+","+Kuyular[1]+","+Kuyular[2]+","+Kuyular[3]+","+Kuyular[4]+","+Kuyular[5]+","+Kuyular[6]+ " ; \nB:"+Kuyular[7]+","+Kuyular[8]+","+Kuyular[9]+","+Kuyular[10]+","+Kuyular[11]+","+Kuyular[12]+","+Kuyular[13]);
                         if(Kuyular[6] > Kuyular[13]){winner = oyuncu_a[0];}
                         if (Kuyular[13] > Kuyular[6]){winner = oyuncu_b[0];}
                         if(Kuyular[6] == Kuyular[13]){winner = "Beraberlik";}
@@ -570,8 +570,8 @@ public class MainActivity extends AppCompatActivity {
                     a4.setEnabled(true);
                     a5.setEnabled(true);
                     a6.setEnabled(true);
-                    change_textColorB("#00FF7F", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
-                    change_textColorB("#000000", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
+                    change_textColor("#00FF7F", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
+                    change_textColor("#000000", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
                     Log.d("method_hamle","Hamle sırası oyuncu A'ya geçirildi.");
                 }
                 if (oyuncu_b_nin_sirasi[0]) {
@@ -590,8 +590,8 @@ public class MainActivity extends AppCompatActivity {
                     b4.setEnabled(true);
                     b5.setEnabled(true);
                     b6.setEnabled(true);
-                    change_textColorB("#000000", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
-                    change_textColorB("#00FF7F", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
+                    change_textColor("#000000", txt_a1, txt_a2, txt_a3, txt_a4, txt_a5, txt_a6);
+                    change_textColor("#00FF7F", txt_b1, txt_b2, txt_b3, txt_b4, txt_b5, txt_b6);
                     Log.d("method_hamle","Hamle sırası oyuncu B'ye geçirildi.");
                 }
 //            System.out.format("╚════════════════════════════════╝\n");
@@ -997,7 +997,7 @@ public class MainActivity extends AppCompatActivity {
         txt_b6.setText(String.valueOf(array[12]));
         btn_h2.setText(String.valueOf(array[13]));
     }
-    public static void change_textColorB(String color, TextView txt_b1,TextView txt_b2,TextView txt_b3,TextView txt_b4,TextView txt_b5,TextView txt_b6){
+    public static void change_textColor(String color, TextView txt_b1,TextView txt_b2,TextView txt_b3,TextView txt_b4,TextView txt_b5,TextView txt_b6){
 //        if (name_color.equals(green)){color}
         // yeşil = "#00FF7F", siyah = "#000000"
         txt_b1.setTextColor(Color.parseColor(color));
@@ -1008,14 +1008,14 @@ public class MainActivity extends AppCompatActivity {
         txt_b6.setTextColor(Color.parseColor(color));
 
     }
-    public static void change_textColorA(String color,TextView txt_a1,TextView txt_a2,TextView txt_a3,TextView txt_a4,TextView txt_a5,TextView txt_a6){
+    /*public static void change_textColorA(String color,TextView txt_a1,TextView txt_a2,TextView txt_a3,TextView txt_a4,TextView txt_a5,TextView txt_a6){
         txt_a1.setTextColor(Color.parseColor(color));
         txt_a2.setTextColor(Color.parseColor(color));
         txt_a3.setTextColor(Color.parseColor(color));
         txt_a4.setTextColor(Color.parseColor(color));
         txt_a5.setTextColor(Color.parseColor(color));
         txt_a6.setTextColor(Color.parseColor(color));
-    }
+    }*/
 //    protected void showNameInputs() { //fonksiyon olarak denendi oyuncu_ ve b'ye değer atnamadı
 //
 //        // get prompts.xml view

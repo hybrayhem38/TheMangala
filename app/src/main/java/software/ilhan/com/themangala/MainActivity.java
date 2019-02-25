@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-
+        //TODO "https://www.youtube.com/watch?v=GtxVILjLcw8"(multiple click listener) hint: for inside switch use just default colon
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -368,6 +368,7 @@ public class MainActivity extends AppCompatActivity {
 //                catch (java.lang.NumberFormatException)
 //                }
                 int hazinem = -1;
+                int dusman_hazinesi = -1;
                 int A_max = -1;
                 int A_min = -1;
                 int B_max = -1;
@@ -378,6 +379,7 @@ public class MainActivity extends AppCompatActivity {
                 if (oyuncu_a_nin_sirasi[0]) {
                     Log.d("method_hamle","Sıra Oyuncu A'da" );
                     hazinem = 6;
+                    dusman_hazinesi = 13;
                     A_max = 5;
                     A_min = 0;
                     B_max = 12;
@@ -386,6 +388,7 @@ public class MainActivity extends AppCompatActivity {
                 if (oyuncu_b_nin_sirasi[0]) {
                     Log.d("method_hamle","Sıra Oyuncu B'de" );
                     hazinem = 13;
+                    dusman_hazinesi = 6;
                     A_max = 12;
                     A_min = 7;
                     B_max = 5;
@@ -397,6 +400,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("method_hamle",",kuyuda bir taş var" );
                         Kuyular[hamle] = 0;
                         hamle++;
+                        if (hamle == dusman_hazinesi){ hamle++;}  //taşlar dağıtırlırken düşman hazinesi atlanır
                         Kuyular[hamle] += 1;
                         set_boardImage(Kuyular,b1,b2, b3, b4, b5, b6, a1, a2, a3, a4, a5, a6);
                         set_boardText(Kuyular, txt_b1,txt_b2,txt_b3,txt_b4,txt_b5,txt_b6,txt_a1,txt_a2,txt_a3,txt_a4,txt_a5,txt_a6, h1, h2);
@@ -406,6 +410,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("method_hamle","normal hamle başlangıcı" );
                         Kuyular[hamle] = 0;
                         while (eldeki_tas_sayisi > 0) {
+                            if (hamle == dusman_hazinesi){ hamle++;}  //taşlar dağıtırlırken düşman hazinesi atlanır
                             if (hamle > 13) {
                                 hamle = 0;
                             }
